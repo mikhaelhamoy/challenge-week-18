@@ -1,0 +1,23 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikhaelhamoy/challenge-week-18.git"
+  },
+  "author": "Mikhael Hamoy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikhaelhamoy/challenge-week-18/issues"
+  },
+  "homepage": "https://github.com/mikhaelhamoy/challenge-week-18#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12"
+  }
+}
