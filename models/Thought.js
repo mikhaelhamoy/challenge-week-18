@@ -38,9 +38,8 @@ const ThoughtSchema = new Schema(
       get: (createdAtVal) => dateFormat(createdAtVal)
     },
     username: {
-      type: Schema.Types.String,
-      ref: 'User',
-      required: true
+      type: String,
+      required: [true, 'Username is required!']
     },
     reactions: [ReactionSchema]
   },

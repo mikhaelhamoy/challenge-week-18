@@ -47,11 +47,11 @@ UserSchema.virtual('friendsCount').get(function() {
   return this.friends.length;
 });
 
-UserSchema.virtual('thoughtsPosted', {
-  ref: 'Thought',
-  localField: 'username',
-  foreignField: 'username'
-});
+// UserSchema.virtual('thoughtsPosted', {
+//   ref: 'Thought',
+//   localField: 'username',
+//   foreignField: 'username'
+// });
 
 // create the User model using UserSchema
 const User = model('User', UserSchema);
