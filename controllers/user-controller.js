@@ -4,16 +4,14 @@ const userController = {
   // get all users
   getAllUser(req, res) {
     User.find({})
-      .populate(
-        {
+      .populate({
           path: 'thoughts',
           select: '-__v'
-        },
-        {
-          path: 'friends',
-          select: '-__v'
-        }
-      )
+      })
+      .populate({
+        path: 'friends',
+        select: '-__v'
+      })
       .select('-__v')
       .sort({ _id: -1 })
       .then(dbUserData => res.json(dbUserData))
@@ -26,16 +24,14 @@ const userController = {
   // get one user by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
-    .populate(
-      {
+      .populate({
         path: 'thoughts',
         select: '-__v'
-      },
-      {
+      })
+      .populate({
         path: 'friends',
         select: '-__v'
-      }
-    )
+      })
       .select('-__v')
       .then(dbUserData => {
         // If no user is found, send 404
@@ -88,7 +84,7 @@ const userController = {
     User.findOneAndUpdate(
       { _id: params.userId },
       { $push: { friends: params.friendId } },
-      { new: true }
+      { new: true, runValidators: true }
     )
       .then(dbUserData => {
         if (!dbUserData) {
@@ -103,7 +99,7 @@ const userController = {
   removeFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },
-      { $pull: { replies: { _id: params.friendId } } },
+      { $pull: { friends: params.friendId  } },
       { new: true }
     )
       .then(dbUserData => res.json(dbUserData))
