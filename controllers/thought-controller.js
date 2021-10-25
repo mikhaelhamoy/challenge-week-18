@@ -39,7 +39,7 @@ const thoughtContoller = {
       });
   },
 
-  addThought({ body }, res) {
+  createThought({ body }, res) {
     console.log(body);
     Thought.create({
       thoughtText: body.thoughtText,
@@ -90,15 +90,15 @@ const thoughtContoller = {
       .catch(err => res.status(400).json(err));
   },
 
-  removeThought({ params }, res) {
-    Thought.findOneAndDelete({ _id: params.thoughtId })
+  deleteThought({ params }, res) {
+    Thought.findOneAndDelete({ _id: params.id })
       .then(deletedThought => {
         if (!deletedThought) {
           return res.status(404).json({ message: 'No Thought with this id!' });
         }
         return User.findOneAndUpdate(
           { username: deletedThought.username },
-          { $pull: { thoughts: params.thoughtId } },
+          { $pull: { thoughts: params.id } },
           { new: true }
         );
       })
